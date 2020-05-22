@@ -20,11 +20,29 @@
  <h1 class="header">檔案上傳練習</h1>
  <!----建立你的表單及設定編碼----->
 
+<form action="catch_file.php" method="post" enctype="multipart/form-data">
 
+<input type="file" name="upload" id="img"><br>
+<input type="text" name="desc"><br>
+<input type="submit" value="上傳">
 
+</form>
 
+<!----建立一個連結來查看上傳後的圖檔----> 
 
-<!----建立一個連結來查看上傳後的圖檔---->  
+<?php
+
+if(!empty($_GET['filename'])){
+    $name=$_GET['filename'];
+?>
+    <!-- 放在此位置較安全 避免看到全部的照片檔案 -->
+    <img src="img/<?=$name;?>" alt="" style="width:200px">
+<?php
+   
+}
+
+?>
+
 
 
 </body>

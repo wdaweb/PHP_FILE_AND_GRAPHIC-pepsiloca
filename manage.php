@@ -5,7 +5,7 @@
  * 3.取得檔案資訊並寫入資料表
  * 4.製作檔案管理功能頁面
  */
-
+include_once "base.php";
 
 ?>
 <!DOCTYPE html>
@@ -22,12 +22,47 @@
 <!----建立上傳檔案表單及相關的檔案資訊存入資料表機制----->
 
 
-
+<form action="save_file.php" method="post" enctype="multipart/form-data">
+    檔案:<input type="file" name="upload" id="img"><br>
+    說明:<input type="text" name="note"><br>
+    相簿:<input type="text" name="album"><br>
+    <input type="submit" value="上傳">
+</form>
 
 
 <!----透過資料表來顯示檔案的資訊，並可對檔案執行更新或刪除的工作----->
 
+<table>
+<tr>
+    <td>預覽</td>
+    <td>檔名</td>
+    <td>路徑</td>
+    <td>類別</td>
+    <td>說明</td>
+    <td>上傳時間</td>
+    <td>動作</td>
+</tr>
+<?php
+$all=all('file_info');
 
+foreach($all as $row){
+?>
+<tr>
+    <td><img src='<?=$row['path'];?>' style="width:200px"></td>
+    <td><?=$row['filename'];?></td>
+    <td><?=$row['path'];?></td>
+    <td><?=$row['type'];?></td>
+    <td><?=$row['note'];?></td>
+    <td><?=$row['upload_time'];?></td>
+    <td>
+    <a class="btn" href="confirm_file.php?id=<?=$row['id'];?>">刪除</a>
+    <a class="btn" href="update_file.php?id=<?=$row['id'];?>">確認</a>
+    </td>
+</tr>
+<?php
+}
+?>
+</table>
 
 
 </body>
