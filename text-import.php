@@ -35,8 +35,45 @@
 
 
 <!----讀出匯入完成的資料----->
+<?php
+include_once "base.php";
+$todo=all("todo_list","","",PDO::FETCH_ASSOC);
+?>
 
+<table>
 
+<tr>
+    <td>id</td>
+    <td>subject</td>
+    <td>description</td>
+    <td>create_date</td>
+    <td>due_date</td>
+</tr>
+<?php
+foreach ($todo as $t){
+?>
+<tr>
+    <td><?=$t['id'];?></td>
+    <td><?=$t['subject'];?></td>
+    <td><?=$t['description'];?></td>
+    <td><?=$t['create_date'];?></td>
+    <td><?=$t['due_date'];?></td>
+</tr>
+<?php
+}
+?>
+</table>
+<?php
+
+    $newfile=fopen('todolist.txt','w+');
+    foreach($todo as $t){
+        fwrite($newfile,implode(',',$t)."\n");
+
+    }
+    fclose($newfile);
+?>
+
+<a href="todolist.txt" download>下載</a>
 
 </body>
 </html>
