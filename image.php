@@ -30,7 +30,8 @@
     <input type="submit" value="上傳">
 </form>
 
-<a href="album2.php">查看相簿</a>
+<a href="album.php">查看相簿1</a><br><br>
+<a href="album2.php">查看相簿2</a><br><br>
 
 <!----縮放圖形----->
 
